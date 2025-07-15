@@ -1,19 +1,20 @@
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
+import messageRoutes from "./routes/message.route.js"
 import { connectDb } from "./utils/db.js";
 import cors from "cors"
 dotenv.config();
 
 const app = express();
 
-app.use(express.json());
-app.use("/api/auth", authRoutes);
 app.use(cors({
   origin : 'http://localhost:5173',
   credentials : true
 }))
-
+app.use(express.json());
+app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
 
 app.get("/", (req, res) => {
   res.send("success");
@@ -24,6 +25,15 @@ connectDb().then(() => {
     console.log(`server is listening at port ${process.env.PORT} and connected to mongodb`);
   });
 });
+
+
+
+
+
+
+
+
+
 
 
 

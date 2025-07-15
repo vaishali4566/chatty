@@ -1,12 +1,27 @@
-import React from 'react'
+import Login from "./pages/Login.jsx";
+import Signup from "./pages/Signup.jsx";
+import Home from "./pages/Home.jsx";
+import MainLayout from "./layouts/MainLayout.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<Signup />}></Route>
+          
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Home />}></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+};
 
-export default App
+export default App;
 
 // my-app/
 // ├── public/
